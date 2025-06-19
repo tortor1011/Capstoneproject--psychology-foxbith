@@ -39,16 +39,21 @@ const IndexPage = () => {
 
     const flagged = answers[12] === 3 || answers[13] === 3;
 
-    // ส่งไป API
-    await axios.post("/api/submit", {
+  try {
+    const res = await axios.post("https://5b86-203-150-157-37.ngrok-free.app/assessment", {
       answers,
       totalScore,
       riskLevel,
       flagged,
     });
 
-    setResult(`คะแนนรวม: ${totalScore} → ${riskLevel}`);
-  };
+    console.log("ส่งข้อมูลสำเร็จ ✅", res.data);
+  } catch (error) {
+    console.error("ส่งข้อมูลไม่สำเร็จ ❌", error);
+  }
+
+  setResult(`คะแนนรวม: ${totalScore} → ${riskLevel}`);
+};
 
   return (
     <div className="max-w-3xl mx-auto p-6">
