@@ -40,7 +40,7 @@ const IndexPage = () => {
     const flagged = answers[12] === 3 || answers[13] === 3;
 
   try {
-    const res = await axios.post("https://5b86-203-150-157-37.ngrok-free.app/assessment", {
+    const res = await axios.post("http://localhost:8080/assessment", {
       answers,
       totalScore,
       riskLevel,
