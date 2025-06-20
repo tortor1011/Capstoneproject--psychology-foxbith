@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const questions = [
-  "ฉันรู้สึกเหนื่อยล้า แม้ไม่ได้ทำงานหนักเกินไป",
-  "ฉันรู้สึกวิตกกังวลหรือกังวลโดยไม่มีเหตุผลชัดเจน",
+  "ฉันรู้สึกตึงเครียดอยู่ตลอดเวลา",
+  "ฉันรู้สึกว่าไม่สามารถที่จะเอาชนะความยากลำบากต่างๆได้",
   "ฉันรู้สึกเบื่อหน่าย หมดแรงจูงใจในการทำงาน",
   "ฉันรู้สึกว่าตนเองไม่มีคุณค่า หรือไร้ความสามารถ",
   "ฉันมีปัญหาในการนอน เช่น นอนไม่หลับ หลับๆ ตื่นๆ",
@@ -64,8 +64,8 @@ export default function MentalHealthForm() {
     <div className="min-h-screen bg-gradient-to-br from-orange-500 to-gray-950 py-12 px-6 font-sans">
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
         <h1 className="text-3xl font-bold text-center text-black-600 mb-6">
-          การพัฒนาเว็บแอปพลิเคชั่นเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน
-บริษัท ฟอกซ์บิท จํากัด
+          การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน
+บริษัท ฟอกซ์บิธ จํากัด
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           {questions.map((q, qIndex) => (
@@ -94,7 +94,7 @@ export default function MentalHealthForm() {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-orange-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-purple-600 transition"
+              className="bg-orange-600 text-white px-6 py-2 rounded-full shadow-lg hover:bg-orange-950 transition"
             >
               ส่งแบบประเมิน
             </button>
