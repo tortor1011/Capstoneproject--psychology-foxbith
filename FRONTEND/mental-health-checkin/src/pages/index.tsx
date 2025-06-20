@@ -29,7 +29,6 @@ type ResultType = {
 
 export default function MentalHealthForm() {
   const [answers, setAnswers] = useState(Array(questions.length).fill(0));
-  const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState<ResultType>(null);
 
   const handleChange = (qIndex: number, value: number) => {
@@ -57,14 +56,18 @@ export default function MentalHealthForm() {
     });
 
     setResult({ totalScore, riskLevel, flagged });
-    setSubmitted(true);
+    setShowModal(true);
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-500 to-gray-950 py-12 px-6 font-sans">
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
         <h1 className="text-3xl font-bold text-center text-black-600 mb-6">
-          การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน โบริษัท ฟอกซ์บิธ จํากัด
+          การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน บริษัท ฟอกซ์บิธ จํากัด
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           {questions.map((q, qIndex) => (
@@ -100,14 +103,25 @@ export default function MentalHealthForm() {
           </div>
         </form>
 
-        {submitted && result && (
-          <div className="mt-8 bg-green-50 border-l-4 border-green-400 p-4 rounded-xl">
-            <h2 className="text-lg font-bold text-green-700 mb-1">ผลการประเมิน</h2>
-            <p>คะแนนรวม: <strong>{result.totalScore}</strong></p>
-            <p>ระดับสุขภาวะจิตใจ: <strong>{result.riskLevel}</strong></p>
-            {result.flagged && <p className="text-red-500 mt-2">⚠️ คำตอบมีความเสี่ยงสูง ควรพิจารณาอย่างใกล้ชิด</p>}
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
+            <div className="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md">
+              <h2 className="text-2xl font-semibold text-center text-orange-600 mb-4">ผลการประเมินสุขภาวะจิตใจ</h2>
+              <p className="text-gray-800 mb-2"><strong>คะแนนรวม:</strong> {result?.totalScore} / 45</p>
+              <p className="text-gray-800 mb-2"><strong>กลุ่มความเสี่ยง:</strong> {result?.riskLevel}</p>
+              {result?.flagged && (
+                <p className="text-red-500 font-semibold mt-2">⚠️ พบสัญญาณเสี่ยงซึมเศร้า ควรติดตามอย่างใกล้ชิด</p>
+              )}
+              <button
+                onClick={() => setShowModal(false)}
+                className="mt-6 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-950 transition"
+              >
+                ปิดหน้าต่าง
+              </button>
+            </div>
           </div>
         )}
+
       </div>
     </div>
   );
