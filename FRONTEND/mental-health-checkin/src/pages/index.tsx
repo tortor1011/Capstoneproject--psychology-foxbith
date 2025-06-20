@@ -72,13 +72,13 @@ export default function MentalHealthForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {questions.map((q, qIndex) => (
             <div key={qIndex} className="bg-orange-50 rounded-2xl p-4 shadow">
-              <p className="font-medium text-gray-700 mb-2">
+              <p className="font-medium text-xl text-gray-700 mb-2 flex justify-center">
                 {qIndex + 1}. {q}
               </p>
-              <div className="flex gap-5 flex-wrap">
+              <div className="flex gap-5 flex-wrap justify-center">
                 {choices.map((choice, cIndex) => (
-                  <label key={cIndex} className="flex items-center gap-2">
-                    <input
+                  <label key={cIndex} className="flex items-center gap-3">
+                    <input 
                       type="radio"
                       name={`question-${qIndex}`}
                       value={cIndex}
@@ -86,7 +86,7 @@ export default function MentalHealthForm() {
                       onChange={() => handleChange(qIndex, cIndex)}
                       className="accent-orange-600"
                     />
-                    <span className="text-sm text-gray-600">{choice}</span>
+                    <span className="text-md text-gray-600">{choice}</span>
                   </label>
                 ))}
               </div>
@@ -104,7 +104,7 @@ export default function MentalHealthForm() {
         </form>
 
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
+          <div className="fixed inset-0 bg-gradient-to-br from-orange-500 to-gray-950 bg-opacity-90 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md">
               <h2 className="text-2xl font-semibold text-center text-orange-600 mb-4">ผลการประเมินสุขภาวะจิตใจ</h2>
               <p className="text-gray-800 mb-2"><strong>คะแนนรวม:</strong> {result?.totalScore} / 45</p>
