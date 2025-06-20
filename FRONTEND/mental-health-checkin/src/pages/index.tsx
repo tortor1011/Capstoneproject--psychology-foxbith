@@ -19,7 +19,7 @@ const questions = [
   "ฉันรู้สึกไม่อยากตื่นขึ้นมาทำงานในตอนเช้า",
 ];
 
-const choices = ["ไม่เคยเลย (0)", "บางครั้ง (1)", "บ่อยครั้ง (2)", "เกือบทุกวัน (3)"];
+const choices = ["ไม่เคยเลย (0)", "บางครั้ง (1)", "บ่อยครั้ง (2)", "เกือบทุกวัน (3)", "ทุกวัน(4)"];
 
 type ResultType = {
   totalScore: number;
@@ -42,12 +42,12 @@ export default function MentalHealthForm() {
     e.preventDefault();
     const totalScore = answers.reduce((sum, val) => sum + val, 0);
     let riskLevel = "";
-    if (totalScore <= 14) riskLevel = "สุขภาวะจิตใจดี";
-    else if (totalScore <= 24) riskLevel = "เริ่มมีความเครียด/หมดไฟ";
-    else if (totalScore <= 34) riskLevel = "แนวโน้มปัญหาสุขภาพจิตปานกลาง";
+    if (totalScore <= 19) riskLevel = "สุขภาวะจิตใจดี";
+    else if (totalScore <= 29) riskLevel = "เริ่มมีความเครียด/หมดไฟ";
+    else if (totalScore <= 39) riskLevel = "แนวโน้มปัญหาสุขภาพจิตปานกลาง";
     else riskLevel = "ความเสี่ยงสูง ควรได้รับการดูแลทันที";
 
-    const flagged = answers[12] === 3 || answers[13] === 3;
+    const flagged = answers[12] === 4 || answers[13] === 4;
 
     await axios.post("https://capstoneproject-psychology-foxbith.onrender.com/assessment", {
       answers,
@@ -64,16 +64,15 @@ export default function MentalHealthForm() {
     <div className="min-h-screen bg-gradient-to-br from-orange-500 to-gray-950 py-12 px-6 font-sans">
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
         <h1 className="text-3xl font-bold text-center text-black-600 mb-6">
-          การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน
-บริษัท ฟอกซ์บิธ จํากัด
+          การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน โบริษัท ฟอกซ์บิธ จํากัด
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           {questions.map((q, qIndex) => (
-            <div key={qIndex} className="bg-orange-50 rounded-xl p-4 shadow">
+            <div key={qIndex} className="bg-orange-50 rounded-2xl p-4 shadow">
               <p className="font-medium text-gray-700 mb-2">
                 {qIndex + 1}. {q}
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-5 flex-wrap">
                 {choices.map((choice, cIndex) => (
                   <label key={cIndex} className="flex items-center gap-2">
                     <input
