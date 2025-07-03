@@ -1,5 +1,19 @@
+'use client'
 import { useState } from "react";
 import axios from "axios";
+import Navbar from "@/components/navbar";
+import React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
 
 const questions = [
   "ฉันรู้สึกตึงเครียดอยู่ตลอดเวลา",
@@ -64,8 +78,10 @@ export default function MentalHealthForm() {
 
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-orange-500 to-gray-950 py-12 px-6 font-sans">
-      <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
+      <Navbar />
+      <div className="max-w-6xl mx-auto bg-white shadow-2xl rounded-3xl p-10 mt-70">
         <h1 className="text-3xl font-bold text-center text-black-600 mb-6">
           การพัฒนาเว็บแอปพลิเคชันเพื่อการติดตามสุขภาวะทางจิตใจพนักงาน บริษัท ฟอกซ์บิธ จํากัด
         </h1>

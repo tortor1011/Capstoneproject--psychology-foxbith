@@ -27,3 +27,4 @@
 *.log
 
 # OS generated
+node_modules
